@@ -1,0 +1,207 @@
+/* ============================================
+   Auth Pages Styles (Login & Register)
+   ============================================ */
+
+.authPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-hero);
+  position: relative;
+  overflow: hidden;
+  padding: var(--header-height) var(--space-xl) var(--space-xl);
+}
+
+.authBg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(201, 168, 76, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(201, 168, 76, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.authCard {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 440px;
+  background: var(--gradient-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-xl);
+  padding: var(--space-3xl);
+  animation: fadeInUp 0.6s ease both;
+}
+
+.authCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-gold);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.authLogo {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.authLogoIcon {
+  font-size: 2rem;
+  color: var(--accent-gold);
+  display: block;
+  margin-bottom: var(--space-xs);
+  filter: drop-shadow(0 0 12px rgba(201, 168, 76, 0.4));
+}
+
+.authLogoName {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-extrabold);
+  letter-spacing: var(--ls-wider);
+  background: var(--gradient-gold-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.authTitle {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: var(--space-xs);
+}
+
+.authSubtitle {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.formLabel {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+
+.formInput {
+  padding: 0.875rem var(--space-lg);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--fs-sm);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.formInput::placeholder {
+  color: var(--text-muted);
+}
+
+.formInput:focus {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px var(--accent-gold-glow);
+  background: rgba(201, 168, 76, 0.02);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.authSubmit {
+  width: 100%;
+  margin-top: var(--space-sm);
+}
+
+.authDivider {
+  text-align: center;
+  position: relative;
+  margin: var(--space-lg) 0;
+}
+
+.authDivider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+.authDividerText {
+  position: relative;
+  background: #14182e;
+  padding: 0 var(--space-md);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.authLinks {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.authLink {
+  font-size: var(--fs-sm);
+  color: var(--accent-gold);
+  font-weight: var(--fw-medium);
+  transition: color var(--duration-fast);
+}
+
+.authLink:hover {
+  color: var(--accent-gold-light);
+}
+
+.authFooter {
+  text-align: center;
+  margin-top: var(--space-xl);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.authFooterLink {
+  color: var(--accent-gold);
+  font-weight: var(--fw-semibold);
+}
+
+.authFooterLink:hover {
+  color: var(--accent-gold-light);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .authCard {
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}
