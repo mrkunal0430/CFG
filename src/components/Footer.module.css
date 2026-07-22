@@ -7,6 +7,7 @@
   background: var(--bg-secondary);
   border-top: 1px solid var(--border-glass);
   overflow: hidden;
+  padding-top: var(--header-height);
 }
 
 .footer::before {
@@ -59,9 +60,27 @@
   color: inherit;
 }
 
-.logoIcon {
-  font-size: 1.3rem;
-  color: var(--accent-gold);
+.logoMarkWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: rgba(10, 14, 26, 0.92);
+  box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.5), 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: transform var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.footerLogo:hover .logoMarkWrap {
+  transform: scale(1.08) rotate(-4deg);
+  box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.6), 0 6px 20px rgba(201, 168, 76, 0.25);
+}
+
+.logoMark {
+  flex-shrink: 0;
 }
 
 .logoName {
