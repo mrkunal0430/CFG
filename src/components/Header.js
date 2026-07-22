@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Header.module.css';
 
 const navLinks = [
@@ -13,16 +14,32 @@ const navLinks = [
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 40);
+
+      const scrolledPastHeader = currentScrollY > 120;
+      const scrollingDown = currentScrollY > lastScrollY;
+
+      setIsHidden(scrolledPastHeader && scrollingDown);
+      lastScrollY = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (isMobileOpen) {
+      setIsHidden(false);
+    }
+  }, [isMobileOpen]);
 
   useEffect(() => {
     if (isMobileOpen) {
@@ -37,13 +54,22 @@ export default function Header() {
 
   return (
     <header
-      className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}
+      className={`${styles.header} ${isScrolled ? styles.scrolled : ''} ${isHidden ? styles.headerHidden : ''}`}
       id="site-header"
     >
       <div className={styles.headerInner}>
         {/* Logo */}
         <Link href="/" className={styles.logo} aria-label="Cosmos Financial Group Home">
-          <span className={styles.logoIcon}>✦</span>
+          <span className={styles.logoMarkWrap}>
+            <Image
+              src="/logo.webp"
+              alt=""
+              width={44}
+              height={44}
+              className={styles.logoMark}
+              priority
+            />
+          </span>
           <div className={styles.logoText}>
             <span className={styles.logoName}>COSMOS</span>
             <span className={styles.logoSub}>Financial Group</span>

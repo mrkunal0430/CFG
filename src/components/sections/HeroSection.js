@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import ParticleCanvas from '@/components/ParticleCanvas';
-import Link from 'next/link';
-import styles from '../../app/page.module.css';
+import ParticleCanvas from "@/components/ParticleCanvas";
+import Link from "next/link";
+import styles from "../../app/page.module.css";
 
 export default function HeroSection() {
   return (
@@ -11,11 +11,13 @@ export default function HeroSection() {
       <div className={styles.heroOverlay} aria-hidden="true" />
 
       <div className={styles.heroContent}>
-        <span className={styles.heroLabel}>Est. 1995 — Global Investment Banking</span>
+        <span className={styles.heroLabel}>
+          Est. 1995 — Global Investment Banking
+        </span>
 
         <h1 className={styles.heroTitle}>
-          <span className={styles.heroTitleGradient}>Cosmos</span>{' '}
-          Financial Group
+          <span className={styles.heroTitleGradient}>Cosmos</span> Financial
+          Group
         </h1>
 
         <p className={styles.heroTagline}>
@@ -23,8 +25,8 @@ export default function HeroSection() {
         </p>
 
         <p className={styles.heroDescription}>
-          Elevate your business to a whole new financial realm. We deliver 
-          world-class investment banking, strategic advisory, and innovative 
+          Elevate your business to a whole new financial realm. We deliver
+          world-class investment banking, strategic advisory, and innovative
           fintech solutions to enterprises worldwide.
         </p>
 
@@ -32,15 +34,13 @@ export default function HeroSection() {
           <Link href="/investors-login" className="btn btn-primary">
             Investors Clique
           </Link>
-          <a href="mailto:connect@cosmosfinancialgroup.com" className="btn btn-outline">
+          <a
+            href="mailto:connect@cosmosfinancialgroup.com"
+            className="btn btn-outline"
+          >
             Connect With Us
           </a>
         </div>
-      </div>
-
-      <div className={styles.scrollIndicator} aria-hidden="true">
-        <div className={styles.scrollDot} />
-        <span>SCROLL</span>
       </div>
     </section>
   );

@@ -185,14 +185,27 @@
 .statItem {
   text-align: center;
   position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.statItem:hover {
+  transform: translateY(-3px);
+}
+
+.statItem:hover .statNumber {
+  filter: drop-shadow(0 0 10px rgba(201, 168, 76, 0.4));
 }
 
 .statItem:not(:last-child)::after {
   content: '';
   position: absolute;
   right: 0;
-  top: 20%;
-  height: 60%;
+  top: 4px;
+  bottom: 4px;
   width: 1px;
   background: var(--border-subtle);
 }
@@ -207,6 +220,7 @@
   background-clip: text;
   line-height: 1;
   margin-bottom: var(--space-xs);
+  white-space: nowrap;
 }
 
 .statLabel {
@@ -309,6 +323,7 @@
 .pillarCard:hover .pillarIcon {
   background: rgba(201, 168, 76, 0.15);
   box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
+  transform: scale(1.12) rotate(8deg);
 }
 
 .pillarTitle {
@@ -451,6 +466,13 @@
   justify-content: center;
   font-size: 1.3rem;
   color: var(--accent-gold);
+  transition: transform var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.offeringCard:hover .offeringIcon {
+  transform: scale(1.12) rotate(8deg);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
 }
 
 .offeringTitle {
@@ -616,6 +638,7 @@
 .teamCard:hover .teamAvatar {
   border-color: var(--accent-gold);
   box-shadow: 0 0 30px rgba(201, 168, 76, 0.2);
+  transform: scale(1.08);
 }
 
 .teamName {

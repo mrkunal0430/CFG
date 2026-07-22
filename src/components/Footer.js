@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Footer.module.css';
 
 const footerLinks = {
@@ -33,7 +34,15 @@ export default function Footer() {
         {/* Brand Column */}
         <div className={styles.brandCol}>
           <Link href="/" className={styles.footerLogo}>
-            <span className={styles.logoIcon}>✦</span>
+            <span className={styles.logoMarkWrap}>
+              <Image
+                src="/logo.webp"
+                alt=""
+                width={48}
+                height={48}
+                className={styles.logoMark}
+              />
+            </span>
             <div>
               <span className={styles.logoName}>COSMOS</span>
               <span className={styles.logoSub}>Financial Group</span>
@@ -120,6 +129,11 @@ export default function Footer() {
             <a href="#" className={styles.bottomLink}>Terms of Service</a>
             <a href="#" className={styles.bottomLink}>Disclaimer</a>
           </div>
+          <a href="#site-header" className={styles.backToTop} aria-label="Back to top">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 19V5M5 12l7-7 7 7" />
+            </svg>
+          </a>
         </div>
       </div>
     </footer>
