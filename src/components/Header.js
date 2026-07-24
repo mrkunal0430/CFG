@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import styles from './Header.module.css';
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/services', label: 'Services' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/about', label: 'About Us' },
+  { href: '/services', label: 'Our Offerings' },
+  { href: '/contact', label: 'Contact Us' },
 ];
 
 export default function Header() {
@@ -58,22 +56,13 @@ export default function Header() {
       id="site-header"
     >
       <div className={styles.headerInner}>
-        {/* Logo */}
+        {/* Logo — CFG + Cosmos Financial Group */}
         <Link href="/" className={styles.logo} aria-label="Cosmos Financial Group Home">
-          <span className={styles.logoMarkWrap}>
-            <Image
-              src="/logo.webp"
-              alt=""
-              width={44}
-              height={44}
-              className={styles.logoMark}
-              priority
-            />
+          <span className={styles.logoMark}>CFG</span>
+          <span className={styles.logoDivider} aria-hidden="true" />
+          <span className={styles.logoText}>
+            Cosmos<br />Financial Group
           </span>
-          <div className={styles.logoText}>
-            <span className={styles.logoName}>COSMOS</span>
-            <span className={styles.logoSub}>Financial Group</span>
-          </div>
         </Link>
 
         {/* Desktop Navigation */}
@@ -87,8 +76,11 @@ export default function Header() {
 
         {/* CTA */}
         <div className={styles.headerActions}>
-          <Link href="/investors-login" className={`btn btn-primary btn-sm ${styles.ctaBtn}`}>
-            Investors Clique
+          <Link href="/contact" className={styles.ctaBtn}>
+            Get in Touch
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
           </Link>
         </div>
 
@@ -124,19 +116,12 @@ export default function Header() {
           ))}
           <div className={styles.mobileDivider} />
           <Link
-            href="/investors-login"
+            href="/contact"
             className={`btn btn-primary ${styles.mobileCta}`}
             onClick={() => setIsMobileOpen(false)}
           >
-            Investors Clique
+            Get in Touch
           </Link>
-          <a
-            href="mailto:connect@cosmosfinancialgroup.com"
-            className={`btn btn-outline ${styles.mobileCta}`}
-            onClick={() => setIsMobileOpen(false)}
-          >
-            Connect With Us
-          </a>
         </nav>
       </div>
 

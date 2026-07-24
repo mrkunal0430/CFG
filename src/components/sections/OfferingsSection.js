@@ -1,44 +1,31 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import AnimatedSection from '@/components/AnimatedSection';
 import styles from '../../app/page.module.css';
 
 const offerings = [
   {
-    icon: '📈',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+        <path d="M8 21h8M12 17v4" />
+      </svg>
+    ),
     title: 'Investments',
-    text: 'We empower institutions with strategic insights and investment opportunities across public and private markets, delivering superior risk-adjusted returns for our partners.',
+    text: 'Sophisticated investment solutions to drive growth and create long-term value across diverse asset classes.',
     href: '/services#investments',
   },
   {
-    icon: '🏛️',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+      </svg>
+    ),
     title: 'Asset Management',
-    text: 'Providing state-of-the-art asset management services with disciplined portfolio construction, active risk monitoring, and transparent reporting frameworks.',
+    text: 'Our asset management strategies focus on performance, resilience, and sustainable value creation over the long term.',
     href: '/services#asset-management',
-  },
-  {
-    icon: '💎',
-    title: 'Capital Advisory',
-    text: 'We offer comprehensive capital advisory services designed to meet the strategic needs of our stakeholders — from fundraising to restructuring and M&A.',
-    href: '/services#capital-advisory',
-  },
-];
-
-const offeringsBottom = [
-  {
-    icon: '✈️',
-    title: 'Aero Capital',
-    subtitle: 'Aircraft Leasing',
-    text: 'Welcome to the world of aviation, where we are shaping the aerolease infrastructure. Our aircraft leasing solutions connect airlines with optimal fleet financing strategies.',
-    href: '/services#aero-capital',
-  },
-  {
-    icon: '🌿',
-    title: 'Sustainability',
-    subtitle: 'Green Holdings',
-    text: 'Sustainability is our core. Cosmos Green Holdings creates sustainable power technologies and green investment vehicles driving the transition to a cleaner future.',
-    href: '/services#green-holdings',
   },
 ];
 
@@ -47,51 +34,47 @@ export default function OfferingsSection() {
     <section className={`section ${styles.offerings}`} id="offerings">
       <div className="container">
         <AnimatedSection>
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionLabel}>What We Do</span>
+          <div className={styles.offeringsHeader}>
+            <span className="label">What We Do</span>
             <h2 className={styles.sectionTitle}>Our Offerings</h2>
-            <p className={styles.sectionSubtitle}>
-              A comprehensive suite of financial services crafted for 
-              enterprises seeking transformative growth.
-            </p>
           </div>
         </AnimatedSection>
 
-        <div className={styles.offeringsGrid}>
-          {offerings.map((offering, index) => (
-            <AnimatedSection key={offering.title} delay={index * 150}>
-              <div className={styles.offeringCard}>
-                <div className={styles.offeringIcon}>{offering.icon}</div>
-                <h3 className={styles.offeringTitle}>{offering.title}</h3>
-                <p className={styles.offeringText}>{offering.text}</p>
-                <Link href={offering.href} className={styles.offeringLink}>
-                  Learn More <span>→</span>
-                </Link>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
+        <div className={styles.offeringsLayout}>
+          {/* Left: Offering cards */}
+          <AnimatedSection direction="left">
+            <div className={styles.offeringsCards}>
+              {offerings.map((offering) => (
+                <div key={offering.title} className={styles.offeringCard}>
+                  <div className={styles.offeringIcon}>{offering.icon}</div>
+                  <div className={styles.offeringBody}>
+                    <h3 className={styles.offeringTitle}>{offering.title}</h3>
+                    <p className={styles.offeringText}>{offering.text}</p>
+                    <Link href={offering.href} className={styles.offeringLink}>
+                      Learn More
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </AnimatedSection>
 
-        <div className={styles.offeringsBottomRow}>
-          {offeringsBottom.map((offering, index) => (
-            <AnimatedSection key={offering.title} delay={index * 150 + 450}>
-              <div className={styles.offeringCard}>
-                <div className={styles.offeringIcon}>{offering.icon}</div>
-                <h3 className={styles.offeringTitle}>
-                  {offering.title}
-                  {offering.subtitle && (
-                    <span style={{ display: 'block', fontSize: 'var(--fs-sm)', fontWeight: 'var(--fw-medium)', color: 'var(--accent-gold)', letterSpacing: 'var(--ls-normal)', textTransform: 'none', marginTop: '4px' }}>
-                      {offering.subtitle}
-                    </span>
-                  )}
-                </h3>
-                <p className={styles.offeringText}>{offering.text}</p>
-                <Link href={offering.href} className={styles.offeringLink}>
-                  Learn More <span>→</span>
-                </Link>
-              </div>
-            </AnimatedSection>
-          ))}
+          {/* Right: Image */}
+          <AnimatedSection direction="right" delay={200}>
+            <div className={styles.offeringsImageWrapper}>
+              <Image
+                src="/images/wind-turbine.png"
+                alt="Sustainable green energy wind turbines"
+                width={600}
+                height={500}
+                className={styles.offeringsImage}
+              />
+              <div className={styles.offeringsImageOverlay} aria-hidden="true" />
+            </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>

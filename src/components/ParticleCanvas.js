@@ -12,7 +12,6 @@ export default function ParticleCanvas() {
     const ctx = canvas.getContext('2d');
     let animationId;
     let particles = [];
-    let connections = [];
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -30,14 +29,14 @@ export default function ParticleCanvas() {
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.4;
-        this.speedY = (Math.random() - 0.5) * 0.4;
-        this.opacity = Math.random() * 0.6 + 0.2;
-        this.pulseSpeed = Math.random() * 0.02 + 0.005;
+        this.size = Math.random() * 1.5 + 0.3;
+        this.speedX = (Math.random() - 0.5) * 0.2;
+        this.speedY = (Math.random() - 0.5) * 0.2;
+        this.opacity = Math.random() * 0.5 + 0.1;
+        this.pulseSpeed = Math.random() * 0.015 + 0.003;
         this.pulseOffset = Math.random() * Math.PI * 2;
-        // Gold particles have ~20% chance
-        this.isGold = Math.random() < 0.2;
+        // Lime accent particles have ~15% chance
+        this.isAccent = Math.random() < 0.15;
       }
 
       update(time) {
@@ -52,33 +51,33 @@ export default function ParticleCanvas() {
 
         // Pulse opacity
         this.currentOpacity =
-          this.opacity * (0.6 + 0.4 * Math.sin(time * this.pulseSpeed + this.pulseOffset));
+          this.opacity * (0.5 + 0.5 * Math.sin(time * this.pulseSpeed + this.pulseOffset));
       }
 
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
 
-        if (this.isGold) {
-          ctx.fillStyle = `rgba(201, 168, 76, ${this.currentOpacity})`;
+        if (this.isAccent) {
+          ctx.fillStyle = `rgba(200, 230, 74, ${this.currentOpacity})`;
         } else {
-          ctx.fillStyle = `rgba(148, 163, 184, ${this.currentOpacity * 0.5})`;
+          ctx.fillStyle = `rgba(180, 200, 170, ${this.currentOpacity * 0.4})`;
         }
 
         ctx.fill();
 
-        // Glow for gold particles
-        if (this.isGold && this.size > 1) {
+        // Glow for accent particles
+        if (this.isAccent && this.size > 1) {
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(201, 168, 76, ${this.currentOpacity * 0.08})`;
+          ctx.fillStyle = `rgba(200, 230, 74, ${this.currentOpacity * 0.06})`;
           ctx.fill();
         }
       }
     }
 
-    // Create particles
-    const count = Math.min(Math.floor((canvas.width * canvas.height) / 8000), 150);
+    // Create particles — fewer for subtle star-field effect
+    const count = Math.min(Math.floor((canvas.width * canvas.height) / 12000), 100);
     for (let i = 0; i < count; i++) {
       particles.push(new Particle());
     }
@@ -95,24 +94,24 @@ export default function ParticleCanvas() {
         p.draw();
       });
 
-      // Draw connections between close particles
+      // Draw subtle connections between close particles
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 120) {
-            const opacity = (1 - dist / 120) * 0.12;
-            const isGoldLine = particles[i].isGold || particles[j].isGold;
+          if (dist < 100) {
+            const opacity = (1 - dist / 100) * 0.06;
+            const isAccentLine = particles[i].isAccent || particles[j].isAccent;
 
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = isGoldLine
-              ? `rgba(201, 168, 76, ${opacity})`
-              : `rgba(148, 163, 184, ${opacity * 0.5})`;
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = isAccentLine
+              ? `rgba(200, 230, 74, ${opacity})`
+              : `rgba(180, 200, 170, ${opacity * 0.4})`;
+            ctx.lineWidth = 0.4;
             ctx.stroke();
           }
         }
