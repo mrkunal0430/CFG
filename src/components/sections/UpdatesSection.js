@@ -1,7 +1,6 @@
 'use client';
 
 import AnimatedSection from '@/components/AnimatedSection';
-import styles from '../../app/page.module.css';
 
 const updates = [
   {
@@ -26,32 +25,32 @@ const updates = [
 
 export default function UpdatesSection() {
   return (
-    <section className={`section ${styles.updates}`} id="updates">
+    <section className="section bg-[linear-gradient(180deg,#0a0e0a_0%,#0f1410_50%,#0a0e0a_100%)]" id="updates">
       <div className="container">
         <AnimatedSection>
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionLabel}>Latest Updates</span>
-            <h2 className={styles.sectionTitle}>
+          <div className="text-center max-w-[700px] mx-auto mb-3xl">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-md">Latest Updates</span>
+            <h2 className="text-4xl font-bold text-text-primary mb-md leading-tight">
               TEDx &middot; AI in Investment Banking & Fintech
             </h2>
-            <p className={styles.sectionSubtitle}>
-              Insights, thought leadership, and the latest from the world of 
+            <p className="text-base text-text-muted leading-normal">
+              Insights, thought leadership, and the latest from the world of
               finance and technology.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className={styles.updatesGrid}>
+        <div className="grid grid-cols-3 gap-xl max-[1024px]:grid-cols-2 max-[768px]:grid-cols-1">
           {updates.map((update, index) => (
             <AnimatedSection key={update.title} delay={index * 150}>
-              <div className={styles.updateCard}>
-                <div className={styles.updateImagePlaceholder}>
+              <div className="glass-card flex flex-col gap-lg p-0 overflow-hidden">
+                <div className="flex items-center justify-center h-40 bg-accent-muted text-5xl">
                   {update.icon}
                 </div>
-                <div className={styles.updateBody}>
-                  <span className={styles.updateTag}>{update.tag}</span>
-                  <h3 className={styles.updateTitle}>{update.title}</h3>
-                  <p className={styles.updateText}>{update.text}</p>
+                <div className="flex flex-col gap-sm p-2xl pt-0">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-accent">{update.tag}</span>
+                  <h3 className="text-lg font-bold text-text-primary">{update.title}</h3>
+                  <p className="text-sm text-text-secondary leading-relaxed">{update.text}</p>
                 </div>
               </div>
             </AnimatedSection>

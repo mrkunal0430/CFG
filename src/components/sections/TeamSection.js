@@ -1,7 +1,6 @@
 'use client';
 
 import AnimatedSection from '@/components/AnimatedSection';
-import styles from '../../app/page.module.css';
 
 const team = [
   {
@@ -32,27 +31,27 @@ const team = [
 
 export default function TeamSection() {
   return (
-    <section className={`section ${styles.team}`} id="team">
+    <section className="section bg-[linear-gradient(180deg,#0a0e0a_0%,#0f1410_50%,#0a0e0a_100%)]" id="team">
       <div className="container">
         <AnimatedSection>
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionLabel}>Leadership</span>
-            <h2 className={styles.sectionTitle}>Leading CXOs at Work</h2>
-            <p className={styles.sectionSubtitle}>
-              Our team is made up of experienced professionals who are dedicated 
+          <div className="text-center max-w-[700px] mx-auto mb-3xl">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-md">Leadership</span>
+            <h2 className="text-4xl font-bold text-text-primary mb-md leading-tight">Leading CXOs at Work</h2>
+            <p className="text-base text-text-muted leading-normal">
+              Our team is made up of experienced professionals who are dedicated
               to providing exceptional service and delivering transformative results.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className={styles.teamGrid}>
+        <div className="grid grid-cols-4 gap-xl max-[1024px]:grid-cols-2 max-[768px]:grid-cols-1">
           {team.map((member, index) => (
             <AnimatedSection key={member.name} delay={index * 100}>
-              <div className={styles.teamCard}>
-                <div className={styles.teamAvatar}>{member.initials}</div>
-                <h3 className={styles.teamName}>{member.name}</h3>
-                <p className={styles.teamRole}>{member.role}</p>
-                <p className={styles.teamBio}>{member.bio}</p>
+              <div className="glass-card text-center flex flex-col items-center gap-sm">
+                <div className="w-16 h-16 rounded-full bg-accent-muted border border-accent/[0.12] flex items-center justify-center text-3xl mb-sm">{member.initials}</div>
+                <h3 className="text-lg font-bold text-text-primary">{member.name}</h3>
+                <p className="text-sm font-semibold text-accent uppercase tracking-wide">{member.role}</p>
+                <p className="text-sm text-text-secondary leading-relaxed">{member.bio}</p>
               </div>
             </AnimatedSection>
           ))}
