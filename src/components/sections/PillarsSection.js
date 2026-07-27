@@ -1,6 +1,7 @@
 'use client';
 
 import AnimatedSection from '@/components/AnimatedSection';
+import MagneticCard from '@/components/MagneticCard';
 
 const pillars = [
   {
@@ -62,11 +63,14 @@ export default function PillarsSection() {
         <div className="grid grid-cols-4 gap-xl max-[1024px]:grid-cols-2 max-[768px]:grid-cols-1">
           {pillars.map((pillar, index) => (
             <AnimatedSection key={pillar.title} delay={index * 120}>
-              <div className="group bg-[linear-gradient(145deg,rgba(21,28,20,0.7),rgba(10,14,10,0.95))] border border-border-glass rounded-lg p-2xl transition-all duration-350 ease-out relative overflow-hidden hover:border-accent/25 hover:-translate-y-1.5 hover:shadow-accent before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-[3px] before:bg-[linear-gradient(135deg,#c8e64a,#d8f06a,#c8e64a)] before:scale-x-0 before:origin-left before:transition-transform before:duration-350 before:ease-out hover:before:scale-x-100">
-                <div className="w-12 h-12 rounded-md bg-accent-muted border border-accent/[0.12] flex items-center justify-center mb-lg text-accent transition-all duration-350 ease-out group-hover:bg-accent/15 group-hover:shadow-[0_0_20px_rgba(200,230,74,0.12)] group-hover:scale-110">{pillar.icon}</div>
-                <h3 className="text-lg font-bold text-text-primary mb-sm">{pillar.title}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed">{pillar.text}</p>
-              </div>
+              <MagneticCard
+                className="group animated-border-card p-2xl transition-all duration-350 ease-out relative before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-[3px] before:bg-[linear-gradient(135deg,#c8e64a,#d8f06a,#c8e64a)] before:scale-x-0 before:origin-left before:transition-transform before:duration-350 before:ease-out hover:before:scale-x-100 before:z-[3]"
+                intensity={8}
+              >
+                <div className="relative z-[3] w-12 h-12 rounded-md bg-accent-muted border border-accent/[0.12] flex items-center justify-center mb-lg text-accent transition-all duration-350 ease-out group-hover:bg-accent/15 group-hover:shadow-[0_0_20px_rgba(200,230,74,0.12)] group-hover:scale-110">{pillar.icon}</div>
+                <h3 className="relative z-[3] text-lg font-bold text-text-primary mb-sm">{pillar.title}</h3>
+                <p className="relative z-[3] text-sm text-text-secondary leading-relaxed">{pillar.text}</p>
+              </MagneticCard>
             </AnimatedSection>
           ))}
         </div>

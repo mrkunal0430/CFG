@@ -1,84 +1,130 @@
 'use client';
 
-import { useState } from 'react';
-
-const inputClasses =
-  'py-3.5 px-lg bg-white/[0.03] border border-border-subtle rounded-md text-text-primary text-sm transition-all duration-200 ease-out placeholder:text-text-muted focus:border-warm-gold focus:shadow-[0_0_0_3px_rgba(201,168,76,0.15)] focus:bg-warm-gold/[0.02]';
+import { useState, useRef } from 'react';
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const btnRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // In a real app, this would submit to an API
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    setLoading(true);
+    // Simulate API call
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 4000);
+    }, 1200);
+  };
+
+  const handleRipple = (e) => {
+    const btn = btnRef.current;
+    if (!btn) return;
+    const rect = btn.getBoundingClientRect();
+    const circle = document.createElement('span');
+    const diameter = Math.max(rect.width, rect.height);
+    circle.style.width = circle.style.height = `${diameter}px`;
+    circle.style.left = `${e.clientX - rect.left - diameter / 2}px`;
+    circle.style.top = `${e.clientY - rect.top - diameter / 2}px`;
+    circle.className = 'ripple-circle';
+    btn.appendChild(circle);
+    setTimeout(() => circle.remove(), 600);
   };
 
   return (
-    <form className="flex flex-col gap-lg" onSubmit={handleSubmit} id="contact-form">
+    <form className="flex flex-col gap-xl" onSubmit={handleSubmit} id="contact-form">
       <div className="grid grid-cols-2 gap-lg max-[768px]:grid-cols-1">
-        <div className="flex flex-col gap-xs">
-          <label htmlFor="firstName" className="text-xs font-semibold text-text-secondary uppercase tracking-wide">First Name</label>
+        <div className="floating-input-group">
           <input
             type="text"
             id="firstName"
             name="firstName"
-            placeholder="John"
-            className={inputClasses}
+            placeholder=" "
+            className="floating-input"
             required
           />
+          <label htmlFor="firstName" className="floating-label">First Name</label>
+          <div className="floating-input-line" />
         </div>
-        <div className="flex flex-col gap-xs">
-          <label htmlFor="lastName" className="text-xs font-semibold text-text-secondary uppercase tracking-wide">Last Name</label>
+        <div className="floating-input-group">
           <input
             type="text"
             id="lastName"
             name="lastName"
-            placeholder="Doe"
-            className={inputClasses}
+            placeholder=" "
+            className="floating-input"
             required
           />
+          <label htmlFor="lastName" className="floating-label">Last Name</label>
+          <div className="floating-input-line" />
         </div>
       </div>
 
-      <div className="flex flex-col gap-xs">
-        <label htmlFor="email" className="text-xs font-semibold text-text-secondary uppercase tracking-wide">Email</label>
+      <div className="floating-input-group">
         <input
           type="email"
           id="email"
           name="email"
-          placeholder="john@company.com"
-          className={inputClasses}
+          placeholder=" "
+          className="floating-input"
           required
         />
+        <label htmlFor="email" className="floating-label">Email Address</label>
+        <div className="floating-input-line" />
       </div>
 
-      <div className="flex flex-col gap-xs">
-        <label htmlFor="subject" className="text-xs font-semibold text-text-secondary uppercase tracking-wide">Subject</label>
+      <div className="floating-input-group">
         <input
           type="text"
           id="subject"
           name="subject"
-          placeholder="How can we help?"
-          className={inputClasses}
+          placeholder=" "
+          className="floating-input"
         />
+        <label htmlFor="subject" className="floating-label">Subject</label>
+        <div className="floating-input-line" />
       </div>
 
-      <div className="flex flex-col gap-xs">
-        <label htmlFor="message" className="text-xs font-semibold text-text-secondary uppercase tracking-wide">Message</label>
+      <div className="floating-input-group">
         <textarea
           id="message"
           name="message"
-          placeholder="Tell us about your project or inquiry..."
-          className={`${inputClasses} min-h-[140px] resize-y`}
+          placeholder=" "
+          className="floating-input min-h-[140px] resize-y"
           required
         />
+        <label htmlFor="message" className="floating-label">Your Message</label>
+        <div className="floating-input-line" />
       </div>
 
       <div className="self-start">
-        <button type="submit" className="btn btn-primary" id="contact-submit">
-          {submitted ? '✓ Message Sent' : 'Send Message'}
+        <button
+          ref={btnRef}
+          type="submit"
+          className="btn btn-primary btn-ripple min-w-[180px]"
+          id="contact-submit"
+          onClick={handleRipple}
+          disabled={loading}
+        >
+          {loading ? (
+            <span className="flex items-center gap-sm">
+              <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" opacity="0.25" />
+                <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+              </svg>
+              Sending...
+            </span>
+          ) : submitted ? (
+            <span className="flex items-center gap-sm">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="checkmark-svg" />
+              </svg>
+              Message Sent
+            </span>
+          ) : (
+            'Send Message'
+          )}
         </button>
       </div>
     </form>

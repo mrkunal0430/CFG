@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import AuroraBackground from '@/components/AuroraBackground';
+import AnimatedSection from '@/components/AnimatedSection';
 
 const videos = [
   {
@@ -25,27 +27,23 @@ export default function VideoSection() {
 
   return (
     <section className="py-5xl bg-bg-primary relative overflow-hidden" id="media">
-      {/* Subtle background glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent/[0.03] blur-[120px] pointer-events-none"
-        aria-hidden="true"
-      />
+      <AuroraBackground />
 
       <div className="container relative z-[1]">
         {/* Section header */}
-
+        <AnimatedSection>
           <span className="inline-flex items-center gap-xs text-xs font-semibold tracking-wider uppercase text-accent border border-accent/25 py-1.5 px-4 rounded-full bg-accent/[0.06] mb-lg">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="animate-[pulse_2s_ease-in-out_infinite]">
               <polygon points="5 3 19 12 5 21 5 3" />
             </svg>
             Media & Insights
           </span>
-        
+        </AnimatedSection>
 
         {/* Video showcase */}
         <div className="grid grid-cols-[1fr_340px] gap-xl items-start max-[1024px]:grid-cols-1 max-[1024px]:gap-lg">
           {/* Main video player */}
-          <div className="relative rounded-lg overflow-hidden border border-white/[0.08] bg-black/40 shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+          <AnimatedSection direction="left" delay={150} className="relative rounded-lg overflow-hidden border border-white/[0.08] bg-black/40 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition-shadow duration-500 hover:shadow-accent-intense">
             <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
               <iframe
                 className="absolute inset-0 w-full h-full"
@@ -60,15 +58,15 @@ export default function VideoSection() {
               <h3 className="text-lg font-semibold text-text-primary mb-xs">{videos[activeVideo].title}</h3>
               <p className="text-sm text-text-muted leading-relaxed">{videos[activeVideo].description}</p>
             </div>
-          </div>
+          </AnimatedSection>
 
           {/* Playlist sidebar */}
           <div className="flex flex-col gap-sm max-[1024px]:flex-row max-[1024px]:overflow-x-auto max-[1024px]:pb-2 max-[768px]:flex-col">
             {videos.map((video, i) => (
+              <AnimatedSection key={video.id} direction="right" delay={200 + i * 100} className="w-full">
               <button
-                key={video.id}
                 onClick={() => setActiveVideo(i)}
-                className={`group flex gap-md p-md rounded-lg border text-left transition-all duration-300 ease-out ${
+                className={`group flex gap-md p-md rounded-lg border text-left transition-all duration-300 ease-out w-full hover:-translate-y-0.5 ${
                   activeVideo === i
                     ? 'bg-accent/[0.08] border-accent/30 shadow-[0_0_20px_rgba(200,230,74,0.06)]'
                     : 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.05] hover:border-white/[0.12]'
@@ -120,6 +118,7 @@ export default function VideoSection() {
                   </h4>
                 </div>
               </button>
+              </AnimatedSection>
             ))}
           </div>
         </div>

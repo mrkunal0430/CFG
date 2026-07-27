@@ -1,6 +1,8 @@
 'use client';
 
 import AnimatedSection from '@/components/AnimatedSection';
+import CounterAnimation from '@/components/CounterAnimation';
+import MouseGridBackground from '@/components/MouseGridBackground';
 
 const milestones = [
   {
@@ -28,7 +30,8 @@ const milestones = [
 export default function GrowthSection() {
   return (
     <section className="section relative overflow-hidden bg-bg-primary" id="growth">
-      <div className="container">
+      <MouseGridBackground />
+      <div className="container relative z-[2]">
         <AnimatedSection>
           <div className="mb-3xl">
             <span className="label">Our Journey</span>
@@ -42,15 +45,14 @@ export default function GrowthSection() {
             <div className="absolute top-0 left-[5%] right-[5%] h-0.5 bg-[linear-gradient(90deg,rgba(200,230,74,0.1),rgba(200,230,74,0.3),rgba(200,230,74,0.1))] max-[1024px]:hidden" aria-hidden="true" />
 
             {milestones.map((milestone, index) => (
-              <div
-                key={milestone.year}
-                className="relative pt-xl max-[1024px]:pt-0 max-[1024px]:pl-lg max-[1024px]:border-l-2 max-[1024px]:border-l-accent/20"
-              >
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full border-[3px] border-bg-primary shadow-[0_0_12px_rgba(200,230,74,0.3)] z-[2] max-[1024px]:hidden" aria-hidden="true" />
-                <span className="block text-3xl font-extrabold text-accent mb-sm leading-none">{milestone.year}</span>
-                <h3 className="text-base font-bold text-text-primary mb-xs">{milestone.title}</h3>
+              <AnimatedSection key={milestone.year} delay={index * 150} className="group relative pt-xl max-[1024px]:pt-0 max-[1024px]:pl-lg max-[1024px]:border-l-2 max-[1024px]:border-l-accent/20">
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full border-[3px] border-bg-primary shadow-[0_0_12px_rgba(200,230,74,0.3)] z-[2] transition-transform duration-350 ease-out group-hover:scale-150 max-[1024px]:hidden" aria-hidden="true" />
+                <span className="block text-3xl font-extrabold text-accent mb-sm leading-none transition-transform duration-350 ease-out group-hover:-translate-y-1">
+                  <CounterAnimation end={milestone.year} duration={1800} />
+                </span>
+                <h3 className="text-base font-bold text-text-primary mb-xs transition-colors duration-300 group-hover:text-accent">{milestone.title}</h3>
                 <p className="text-sm text-text-muted leading-normal">{milestone.text}</p>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </AnimatedSection>

@@ -688,3 +688,551 @@
     font-size: var(--fs-xs);
   }
 }
+
+/* ================================================
+   AURORA BACKGROUND — About Page
+   ================================================ */
+.aurora-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  animation: auroraFlow 12s ease-in-out infinite alternate;
+}
+
+.aurora-blob-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212,168,67,0.25) 0%, rgba(200,230,74,0.08) 60%, transparent 80%);
+  top: -15%;
+  left: 10%;
+  animation-duration: 14s;
+}
+
+.aurora-blob-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(200,230,74,0.15) 0%, rgba(212,168,67,0.05) 60%, transparent 80%);
+  top: 30%;
+  right: -5%;
+  animation-duration: 18s;
+  animation-delay: -4s;
+}
+
+.aurora-blob-3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(232,200,118,0.18) 0%, transparent 70%);
+  bottom: 10%;
+  left: 25%;
+  animation-duration: 16s;
+  animation-delay: -7s;
+}
+
+.aurora-blob-4 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(200,230,74,0.12) 0%, transparent 70%);
+  top: 50%;
+  left: 60%;
+  animation-duration: 20s;
+  animation-delay: -2s;
+}
+
+@keyframes auroraFlow {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+  33% {
+    border-radius: 60% 40% 30% 70% / 50% 60% 40% 60%;
+  }
+  66% {
+    border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%;
+  }
+  100% {
+    transform: translate(30px, -20px) scale(1.1) rotate(5deg);
+    border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%;
+  }
+}
+
+/* ================================================
+   FLOATING SHAPES — Contact Page
+   ================================================ */
+.floating-shapes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-shape {
+  position: absolute;
+  opacity: 0.12;
+  animation: floatDrift ease-in-out infinite;
+}
+
+.floating-shape--hexagon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: linear-gradient(135deg, rgba(200,230,74,0.3), rgba(212,168,67,0.15));
+  border: 1px solid rgba(200,230,74,0.2);
+}
+
+.floating-shape--triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  background: linear-gradient(135deg, rgba(212,168,67,0.25), rgba(200,230,74,0.1));
+}
+
+.floating-shape--circle {
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid rgba(200,230,74,0.2);
+  box-shadow: 0 0 20px rgba(200,230,74,0.05);
+}
+
+@keyframes floatDrift {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(15px, -25px) rotate(5deg);
+  }
+  50% {
+    transform: translate(-10px, 10px) rotate(-3deg);
+  }
+  75% {
+    transform: translate(20px, 15px) rotate(8deg);
+  }
+}
+
+/* ================================================
+   MAGNETIC CARD
+   ================================================ */
+.magnetic-card {
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.magnetic-card-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition: background 0.15s ease-out;
+  border-radius: inherit;
+}
+
+/* ================================================
+   TEXT REVEAL
+   ================================================ */
+.text-reveal {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.text-reveal-word {
+  display: inline-block;
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+  will-change: opacity, transform;
+}
+
+/* ================================================
+   SVG PATH REVEAL — Services
+   ================================================ */
+.svg-path-reveal {
+  width: 80px;
+  height: 80px;
+  color: var(--accent);
+}
+
+.svg-draw-path {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  transition: stroke-dashoffset 1.2s var(--ease-out);
+}
+
+.svg-path-revealed .svg-draw-path {
+  stroke-dashoffset: 0;
+  animation: drawPath 1.2s var(--ease-out) forwards;
+}
+
+@keyframes drawPath {
+  from { stroke-dashoffset: 300; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* ================================================
+   SCROLL SPY NAV — Services
+   ================================================ */
+.scroll-spy-nav {
+  position: fixed;
+  top: calc(var(--header-height) + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+}
+
+.scroll-spy-nav--visible {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+
+.scroll-spy-nav-inner {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  background: rgba(10, 14, 10, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+}
+
+.scroll-spy-pill {
+  padding: 8px 16px;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  border-radius: var(--radius-full);
+  transition: all 0.25s var(--ease-out);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.scroll-spy-pill:hover {
+  color: var(--text-secondary);
+  background: rgba(200,230,74,0.05);
+}
+
+.scroll-spy-pill--active {
+  color: var(--bg-primary);
+  background: var(--accent);
+  box-shadow: 0 2px 12px rgba(200,230,74,0.25);
+}
+
+/* ================================================
+   MARQUEE TEXT — Services
+   ================================================ */
+.marquee-strip {
+  overflow: hidden;
+  padding: 1.5rem 0;
+  position: relative;
+  mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  animation: marqueeSlide linear infinite;
+  width: max-content;
+}
+
+.marquee-item {
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.35);
+  white-space: nowrap;
+  user-select: none;
+}
+
+@keyframes marqueeSlide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ================================================
+   ROTATING CONIC GRADIENT BORDER
+   ================================================ */
+.animated-border-card {
+  position: relative;
+  background: var(--gradient-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  z-index: 0;
+}
+
+.animated-border-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--border-angle, 0deg), transparent 30%, rgba(200,230,74,0.4), transparent 70%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  animation: borderRotate 4s linear infinite;
+}
+
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes borderRotate {
+  to { --border-angle: 360deg; }
+}
+
+/* ================================================
+   FLOATING LABEL INPUT — Contact Form
+   ================================================ */
+.floating-input-group {
+  position: relative;
+}
+
+.floating-input {
+  width: 100%;
+  padding: 1.25rem 1rem 0.5rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: var(--fs-sm);
+  transition: all 0.3s var(--ease-out);
+}
+
+.floating-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(200,230,74,0.12);
+  background: rgba(200,230,74,0.02);
+}
+
+.floating-label {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: all 0.25s var(--ease-out);
+}
+
+.floating-input:focus + .floating-label,
+.floating-input:not(:placeholder-shown) + .floating-label {
+  top: 10px;
+  transform: translateY(0);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+textarea.floating-input + .floating-label {
+  top: 1.25rem;
+  transform: translateY(0);
+}
+
+textarea.floating-input:focus + .floating-label,
+textarea.floating-input:not(:placeholder-shown) + .floating-label {
+  top: 6px;
+}
+
+/* Focus line animation */
+.floating-input-line {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-accent);
+  border-radius: var(--radius-full);
+  transition: all 0.35s var(--ease-out);
+  transform: translateX(-50%);
+}
+
+.floating-input:focus ~ .floating-input-line {
+  width: 100%;
+}
+
+/* ================================================
+   BUTTON RIPPLE EFFECT
+   ================================================ */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple .ripple-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: scale(0);
+  animation: rippleEffect 0.6s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Success checkmark */
+@keyframes checkmarkDraw {
+  0% { stroke-dashoffset: 24; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.checkmark-svg {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: checkmarkDraw 0.4s var(--ease-out) 0.2s forwards;
+}
+
+/* ================================================
+   FAQ ACCORDION — Contact
+   ================================================ */
+.faq-item {
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease-out);
+  background: var(--gradient-card);
+}
+
+.faq-item:hover,
+.faq-item--open {
+  border-color: rgba(200,230,74,0.25);
+}
+
+.faq-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: color 0.25s var(--ease-out);
+}
+
+.faq-trigger:hover {
+  color: var(--accent);
+}
+
+.faq-chevron {
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+  transition: transform 0.35s var(--ease-out);
+  flex-shrink: 0;
+}
+
+.faq-item--open .faq-chevron {
+  transform: rotate(180deg);
+}
+
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease-out), padding 0.4s var(--ease-out);
+  padding: 0 1.5rem;
+}
+
+.faq-item--open .faq-content {
+  max-height: 200px;
+  padding: 0 1.5rem 1.25rem;
+}
+
+.faq-content p {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+}
+
+/* ================================================
+   PARALLAX DEPTH
+   ================================================ */
+.parallax-depth {
+  will-change: transform;
+  transition: transform 0.05s linear;
+}
+
+/* ================================================
+   GLOW PULSE STRONG — CTA
+   ================================================ */
+@keyframes glowPulseStrong {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(200,230,74,0.15), 0 4px 30px rgba(200,230,74,0.08);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(200,230,74,0.3), 0 4px 50px rgba(200,230,74,0.15);
+  }
+}
+
+/* ================================================
+   SERVICE ACCENT COLORS
+   ================================================ */
+.service-accent-investments { --service-accent: rgba(72, 187, 120, 0.15); }
+.service-accent-asset-management { --service-accent: rgba(66, 153, 225, 0.15); }
+.service-accent-capital-advisory { --service-accent: rgba(237, 137, 54, 0.15); }
+.service-accent-aero-capital { --service-accent: rgba(159, 122, 234, 0.15); }
+.service-accent-green-holdings { --service-accent: rgba(72, 187, 120, 0.15); }
+
+/* ================================================
+   ANIMATED CHECKMARKS — Services
+   ================================================ */
+.animated-check {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.4s var(--ease-out);
+}
+
+.animated-check.checked {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ================================================
+   RESPONSIVE: SCROLL SPY NAV
+   ================================================ */
+@media (max-width: 768px) {
+  .scroll-spy-nav-inner {
+    max-width: 92vw;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .scroll-spy-nav-inner::-webkit-scrollbar {
+    display: none;
+  }
+  .scroll-spy-pill {
+    padding: 6px 12px;
+    font-size: 0.65rem;
+  }
+
+  .aurora-blob {
+    filter: blur(60px);
+    opacity: 0.35;
+  }
+  .aurora-blob-1 { width: 300px; height: 300px; }
+  .aurora-blob-2 { width: 250px; height: 250px; }
+  .aurora-blob-3 { width: 200px; height: 200px; }
+  .aurora-blob-4 { display: none; }
+}
