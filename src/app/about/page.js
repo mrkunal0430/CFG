@@ -212,35 +212,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ==================== LEADERSHIP QUOTE — Cinematic Blockquote ==================== */}
-      <section className="section relative overflow-hidden bg-bg-primary">
-        <div
-          className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_30%_50%,rgba(201,168,76,0.04)_0%,transparent_40%),radial-gradient(circle_at_70%_50%,rgba(201,168,76,0.03)_0%,transparent_40%)]"
-          aria-hidden="true"
-        />
-        <div className="container">
-          <AnimatedSection direction="scale">
-            <div className="relative z-[1] max-w-[900px] mx-auto text-center">
-              <div className="bg-[linear-gradient(145deg,rgba(21,28,20,0.7),rgba(10,14,10,0.95))] border border-border-glass rounded-xl py-4xl px-3xl relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-[3px] before:bg-[linear-gradient(135deg,#d4a843,#e8c876,#d4a843)] after:content-[''] after:absolute after:inset-0 after:pointer-events-none after:bg-[radial-gradient(circle_at_50%_0%,rgba(201,168,76,0.05)_0%,transparent_50%)] max-[768px]:py-2xl max-[768px]:px-xl animate-[borderGlow_4s_ease-in-out_infinite]">
-                <span className="font-serif text-[6rem] leading-[0.8] bg-[linear-gradient(90deg,#d4a843,#f0dca0,#d4a843)] bg-clip-text text-transparent opacity-25 block mb-md relative z-[1]">
-                  &ldquo;
-                </span>
-                <p className="font-serif text-2xl text-text-primary leading-relaxed italic mb-2xl relative z-[1] max-[768px]:text-lg">
-                  We believe that every enterprise holds the potential to
-                  redefine its industry. Our role is to unlock that potential
-                  through strategic capital solutions, unwavering integrity,
-                  and a partnership built on trust.
-                </p>
-                <div className="flex flex-col items-center gap-xs relative z-[1]">
-                  <span className="text-base font-semibold text-warm-gold tracking-wide">Leadership Team</span>
-                  <span className="text-sm text-text-muted">Cosmos Financial Group</span>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
       {/* ==================== VALUES — 3D Magnetic Tilt Cards ==================== */}
       <section className="section relative overflow-hidden bg-[linear-gradient(180deg,#0a0e0a_0%,#0f1410_50%,#0a0e0a_100%)]">
         <div
