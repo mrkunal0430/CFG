@@ -20,7 +20,7 @@ export default function EarthGlobe() {
 
   return (
     <div
-      className="absolute -bottom-[100%] right-[-40%] w-[130%] max-w-[1600px] aspect-square pointer-events-none z-[1] max-[1024px]:-bottom-[40%] max-[1024px]:right-[-15%] max-[1024px]:w-[150%] max-[768px]:-bottom-[25%] max-[768px]:right-[-20%] max-[768px]:w-[170%] max-[480px]:-bottom-[15%] max-[480px]:right-[-25%] max-[480px]:w-[200%]"
+      className="absolute -bottom-[100%] right-[-40%] w-[130%] max-w-[1600px] aspect-square pointer-events-none z-[1] max-[1024px]:-bottom-[40%] max-[1024px]:right-[-15%] max-[1024px]:w-[150%] max-[768px]:-bottom-[25%] max-[768px]:right-[-20%] max-[768px]:w-[170%] max-[480px]:-bottom-[35%] max-[480px]:right-[-40%] max-[480px]:w-[140%] max-[380px]:-bottom-[42%] max-[380px]:right-[-45%] max-[380px]:w-[130%]"
       ref={globeRef}
     >
       {/* Sunrise/horizon glow — positioned to match the sunrise at upper-left of the globe curve */}

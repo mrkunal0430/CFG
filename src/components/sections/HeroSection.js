@@ -7,7 +7,7 @@ import ParticleCanvas from "@/components/ParticleCanvas";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center bg-bg-primary overflow-hidden pt-[80px] max-[768px]:pt-16" id="hero">
+    <section className="relative min-h-screen flex items-center bg-bg-primary overflow-hidden pt-[80px] max-[768px]:pt-16 max-[768px]:items-start" id="hero">
       {/* Star particles background */}
       <ParticleCanvas />
 
@@ -16,7 +16,7 @@ export default function HeroSection() {
 
       {/* Large "CFG" watermark */}
       <div
-        className="absolute top-1/2 right-[5%] -translate-y-1/2 text-[clamp(12rem,20vw,28rem)] font-black tracking-[0.05em] text-white/[0.02] leading-[0.85] pointer-events-none z-[1] select-none [-webkit-text-stroke:1px_rgba(255,255,255,0.03)] max-[768px]:text-[8rem] max-[768px]:right-[-10%]"
+        className="absolute top-1/2 right-[5%] -translate-y-1/2 text-[clamp(12rem,20vw,28rem)] font-black tracking-[0.05em] text-white/[0.02] leading-[0.85] pointer-events-none z-[1] select-none [-webkit-text-stroke:1px_rgba(255,255,255,0.03)] max-[768px]:text-[8rem] max-[768px]:right-[-10%] max-[480px]:text-[5rem] max-[480px]:right-[-15%]"
         aria-hidden="true"
       >
         CFG
@@ -32,7 +32,7 @@ export default function HeroSection() {
       />
 
       {/* Main content */}
-      <div className="relative z-[3] flex flex-col gap-xl max-w-[1280px] mx-auto px-xl pt-4xl pb-5xl w-full max-[1024px]:pt-3xl max-[1024px]:pb-4xl">
+      <div className="relative z-[3] flex flex-col gap-xl max-w-[1280px] mx-auto px-xl pt-4xl pb-5xl w-full max-[1024px]:pt-3xl max-[1024px]:pb-4xl max-[768px]:pt-2xl max-[768px]:pb-3xl max-[480px]:px-md max-[480px]:pt-xl">
         <div className="flex flex-col gap-xl max-w-[640px]">
           {/* Welcome badge */}
           <span className="inline-flex items-center gap-xs text-xs font-semibold tracking-wider uppercase text-accent border border-accent/25 py-1.5 px-4 rounded-full bg-accent/[0.06] w-fit animate-[fadeIn_0.8s_ease_forwards]">
